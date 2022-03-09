@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public Text text;
     public Slider slider;
+    public AudioSource fart;
+    public AudioSource pain;
 
     bool gameHasEnded = false;
     //public float restartDelay = 1f;
@@ -30,14 +32,23 @@ public class GameManager : MonoBehaviour
 
     IEnumerator IntroAnim()
     {
+        
         text.text = "Man, shouldn't have had taco bell for lunch...";
         yield return new WaitForSeconds(2f);
+        text.text = "I need to find a bathroom";
+        yield return new WaitForSeconds(2f);
+        text.text = "I need to find a bathroom";
+        yield return new WaitForSeconds(2f);
+        text.text = "";
+        pain.Play();
         slider.gameObject.SetActive(true);
     }
 
     IEnumerator Restart()
     {
         text.text = "You shit your pants";
+        yield return new WaitForSeconds(2f);
+        fart.Play();
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
